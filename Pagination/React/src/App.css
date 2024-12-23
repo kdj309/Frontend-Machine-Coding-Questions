@@ -1,0 +1,70 @@
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+  grid-auto-rows: 200px;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  max-width: 100dvw;
+  max-height: 100dvh;
+}
+.gallery_item{
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+.gallery_item>img{
+  object-fit: contain;
+  height: 180px;
+}
+.pagination_container{
+  display: flex;
+  margin-block: 10px;
+}
+.pagination_btn-prev,.pagination_btn-next{
+  flex: 0.2;
+  padding: 0.4em;
+  outline: auto;
+  border: none;
+  border-radius: 11px;
+  background-color: rgb(56, 56, 229);
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+}
+.pagination_btn-prev:disabled,.pagination_btn-next:disabled{
+  background-color: rgb(153, 153, 207);
+}
+.pagination_pagewise-btncontainer{
+  display: flex;
+  gap: 5px;
+  max-width: 100%;
+  overflow-x: scroll;
+  scrollbar-width: thin;
+}
+
+
+.pagwise_btn{
+  padding: 0.5em;
+  width: max-content;
+  border: 1px solid black;
+  border-radius: 11px;
+  color: rgb(56, 56, 229);
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+.pagwise_btn.active{
+  background-color: rgb(56, 56, 229);
+  color: white;
+  border: 1px solid black;
+}

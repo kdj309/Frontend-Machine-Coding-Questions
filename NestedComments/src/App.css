@@ -1,0 +1,37 @@
+.comment-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.comment-wrapper>textarea{
+  flex: 0.8;
+  width: 100%;
+}
+.comment-button-container{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.comment-wrapper>button{
+  flex:0.1;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.comment-replies{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  background-color: rgb(169, 235, 235);
+  gap: 10px;
+}
+.comment-reply{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.5em;
+}
+.comment-reply>textarea{
+  flex: 0.8;
+}

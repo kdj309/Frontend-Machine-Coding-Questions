@@ -1,0 +1,15 @@
+.row{
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+.cell{
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+}
+.cell.disableclick{
+    pointer-events: none;
+}

@@ -1,0 +1,15 @@
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cell.disable {
+  pointer-events: none;
+}
+.gamecontainer_row {
+  display: flex;
+  width: max-content;
+}

@@ -1,0 +1,14 @@
+.progressbar_wrapper{
+  position: relative;
+  width: 300px;
+  height: 30px;
+  background-color: rgb(151, 144, 144);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.progressbar_fill{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(30, 187, 30);
+}

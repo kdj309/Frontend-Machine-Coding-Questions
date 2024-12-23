@@ -1,0 +1,1 @@
+export interface photo{src:string,alt:string}
