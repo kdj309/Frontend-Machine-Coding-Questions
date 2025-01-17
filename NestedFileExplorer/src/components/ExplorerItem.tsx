@@ -18,11 +18,14 @@ export const ExplorerItem: React.FC<Props> = ({
     isFolder: boolean;
     isAddoperation: boolean;
   }>({ showInput: false, isFolder: false, isAddoperation: false });
+
   const [expandChildrens, toggleExpansion] = useReducer(
     (state) => !state,
     false
   );
+
   const [contentValue, setContentValue] = useState<string>("");
+
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLInputElement>,
     newcontent: string
@@ -62,7 +65,6 @@ export const ExplorerItem: React.FC<Props> = ({
           <div className="actions">
             {item.isFolder && (
               <>
-                {" "}
                 <button
                   onClick={(e) => {
                     setShowInput({

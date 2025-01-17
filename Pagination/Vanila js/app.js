@@ -107,7 +107,7 @@ pagewisebtncontainer.addEventListener("click", async (e) => {
   if (e.target.nodeName === "BUTTON") {
     const pageno = e.target.dataset.pageno;
     currentPage = parseInt(pageno);
-    await loadImages(currentPage);
+    await loadImages();
     updateBtn(currentPage);
   }
 });

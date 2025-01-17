@@ -33,7 +33,6 @@ export default function Game() {
       newboard[row][col] = curplayer;
       setGameBoard(newboard);
       const prevref = {
-        ...currentProgress,
         rows: {
           ...currentProgress.rows,
           [row]: (currentProgress.rows[row] || 0) + value,
