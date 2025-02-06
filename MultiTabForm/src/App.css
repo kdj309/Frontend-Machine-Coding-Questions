@@ -1,0 +1,86 @@
+main {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+.tabcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+.tab {
+  padding: 0.75em;
+  cursor: pointer;
+}
+
+.tabpanel {
+  width: 100%;
+}
+.activetab {
+  padding: 0.75em;
+  background-color: rgb(244, 198, 157);
+  font-weight: bold;
+}
+.tabbody-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tabinputcontainer {
+  padding: 0.45em;
+  display: flex;
+  flex-direction: column;
+}
+.tabinputcontainer > input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  padding: 0.65em 0.36em;
+  min-height: 15px;
+  border-radius: 9px;
+  outline: none;
+  width: max-content;
+}
+textarea {
+  min-height: 60px;
+  field-sizing: content;
+  max-width: 300px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.centerdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tabsubmitbtn {
+  cursor: pointer;
+  padding: 0.56em 0.67em;
+  border-radius: 9px;
+  outline: none;
+  background-color: unset;
+  width: 100px;
+}
+.tabsubmitbtn:hover {
+  background-color: rgb(244, 198, 157);
+  color: black;
+}
+span {
+  color: red;
+  font-size: 18;
+}
+.btn {
+  padding: 0.45em 0.64em;
+  cursor: pointer;
+  outline: none;
+  width: 100px;
+  border-radius: 9px;
+  margin-left: 10px;
+}
