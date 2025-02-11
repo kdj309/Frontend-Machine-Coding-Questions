@@ -52,7 +52,6 @@ function updateProgress(row, col) {
   if (row === col) {
     gameMap.diag += value;
   }
-  console.log(typeof row, typeof col);
   if (row + col === noofbox - 1) {
     gameMap.antidiag += value;
   }
