@@ -11,10 +11,14 @@ export default function Product({
     rating: number;
   };
   isLast: boolean;
-  lastelementRef: ((node: any) => void)|null;
+  lastelementRef: ((node: any) => void) | null;
 }) {
   return isLast ? (
-    <div id="lastproduct" className="products_container_item" ref={lastelementRef}>
+    <div
+      id="lastproduct"
+      className="products_container_item"
+      ref={lastelementRef}
+    >
       <img src={product.thumbnail} alt="image-thumbnail" />
       <div className="products_container_item-details">
         <h3>{product.title}</h3>

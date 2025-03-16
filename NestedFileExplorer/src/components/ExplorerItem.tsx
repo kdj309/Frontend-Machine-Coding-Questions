@@ -138,15 +138,17 @@ export const ExplorerItem: React.FC<Props> = ({
       </div>
       {item.items.length > 0 && expandChildrens && (
         <div className="childitems">
-          {item.items.map((f) => f!=null? (
-            <ExplorerItem
-              item={f}
-              key={f.id}
-              addItem={addItem}
-              editItem={editItem}
-              deleteItem={deleteItem}
-            ></ExplorerItem>
-          ):null)}
+          {item.items.map((f) =>
+            f != null ? (
+              <ExplorerItem
+                item={f}
+                key={f.id}
+                addItem={addItem}
+                editItem={editItem}
+                deleteItem={deleteItem}
+              ></ExplorerItem>
+            ) : null
+          )}
         </div>
       )}
     </>

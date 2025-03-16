@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useCallback } from "react";
 const PAGESIZE = 9;
 function App() {
   const [countries, setcountries] = useState([]);
@@ -23,25 +23,24 @@ function App() {
     })();
   }, []);
 
+  const paginationHandler = useCallback(
+    function (page, isIncrementOperation = false, isPageOperation = false) {
+      let newpage;
+      if (isPageOperation) {
+        newpage = page;
+      } else if (isIncrementOperation) {
+        newpage = page + 1;
+      } else {
+        newpage = page - 1;
+      }
+      setpage(newpage);
+      setcountries(
+        allCountries.slice((newpage - 1) * PAGESIZE, newpage * PAGESIZE)
+      );
+    },
+    [allCountries]
+  );
 
-  function previousHandler(page) {
-    const decrementedpage = page - 1;
-    setpage(decrementedpage);
-    setcountries(
-      allCountries.slice((decrementedpage - 1) * PAGESIZE, decrementedpage * PAGESIZE)
-    );
-  }
-  function nextHandler(page) {
-    const incrementedpage = page + 1;
-    setpage(incrementedpage);
-    setcountries(
-      allCountries.slice((incrementedpage - 1) *PAGESIZE, incrementedpage * PAGESIZE)
-    );
-  }
-  function pageHandler(page) {
-    setpage(page);
-    setcountries(allCountries.slice((page - 1) * PAGESIZE, page * PAGESIZE));
-  }
   return (
     <>
       <div className="country-container">
@@ -57,21 +56,26 @@ function App() {
         })}
       </div>
       <div className="page-container">
-        <button disabled={page === 1} onClick={() => previousHandler(page)}>
+        <button disabled={page === 1} onClick={() => paginationHandler(page)}>
           Prev
         </button>
         <div>
           {new Array(totalPages).fill(null).map((_, indx) => (
             <button
               className={`${indx + 1 === page ? "active" : "btn"}`}
-              onClick={() => pageHandler(indx+1)}
+              onClick={() => paginationHandler(page + 1, false, true)}
               key={indx}
             >
               {indx + 1}
             </button>
           ))}
         </div>
-        <button disabled={page===totalPages} onClick={() => nextHandler(page)}>Next</button>
+        <button
+          disabled={page === totalPages}
+          onClick={() => paginationHandler(page, true, false)}
+        >
+          Next
+        </button>
       </div>
     </>
   );

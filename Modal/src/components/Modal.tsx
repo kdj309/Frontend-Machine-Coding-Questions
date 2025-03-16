@@ -6,8 +6,8 @@ const Modal: React.FC<{
   isVisible: boolean;
   onClose: () => void;
 }> = ({ children, title, isVisible, onClose }) => {
-  return (
-    isVisible && (
+  if (isVisible) {
+    return (isVisible && (
       <>
         <div className="modal-backdrop" onClick={onClose}></div>
         <div className="modal-wrapper">
@@ -17,8 +17,9 @@ const Modal: React.FC<{
           </div>
           <div className="modal-body">{children}</div>
         </div>
-      </>
+      </>)
     )
-  );
+  }
+  return null
 };
 export default Modal;

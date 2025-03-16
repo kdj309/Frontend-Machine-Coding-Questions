@@ -19,79 +19,80 @@ export default function TabForm() {
   });
 
   const handleSubmit = () => {
-    const allValid = config.every(tab => !tab.validation());
+    const allValid = config.every((tab) => !tab.validation());
     if (allValid) {
       console.log(userInfo);
     }
   };
-  const config = useMemo(()=>[
-    {
-      name: "Personal Information",
-      component: FirstTabComponent,
-      validation: () => {
-        const err: Record<string, string> = {};
-        if (validations.email(userInfo.email)) {
-          err.email = "email is not valid";
-        }
+  const config = useMemo(
+    () => [
+      {
+        name: "Personal Information",
+        component: FirstTabComponent,
+        validation: () => {
+          const err: Record<string, string> = {};
+          if (validations.email(userInfo.email)) {
+            err.email = "email is not valid";
+          }
 
-        if (validations.number(userInfo.number)) {
-          err.number = "number is not valid";
-        }
-        if (validations.name(userInfo.name)) {
-          err.name = "name must be greater than 3 characters";
-        }
-        const hasError = Object.keys(err).length > 0;
-        if (hasError) {
-          setErrors((prevErrors) => ({ ...prevErrors, ...err }));
-        } else {
-          setErrors((prevErrors) => {
-            const newErrors = { ...prevErrors };
-            delete newErrors.email;
-            delete newErrors.number;
-            delete newErrors.name;
-            return newErrors;
-          });
-        }
-        return hasError;
+          if (validations.number(userInfo.number)) {
+            err.number = "number is not valid";
+          }
+          if (validations.name(userInfo.name)) {
+            err.name = "name must be greater than 3 characters";
+          }
+          const hasError = Object.keys(err).length > 0;
+          if (hasError) {
+            setErrors((prevErrors) => ({ ...prevErrors, ...err }));
+          } else {
+            setErrors((prevErrors) => {
+              const newErrors = { ...prevErrors };
+              delete newErrors.email;
+              delete newErrors.number;
+              delete newErrors.name;
+              return newErrors;
+            });
+          }
+          return hasError;
+        },
       },
-    },
-    {
-      name: "Hobbies",
-      component: SecondTabComponent,
-      validation: () => {
-        const err: Record<string, string> = {};
-        if (userInfo.city.trim() === "") {
-          err.city = "City must not be empty";
-        }
-        if (userInfo.address.trim() === "") {
-          err.address = "Adress must not be empty";
-        }
-        const hasError = Object.keys(err).length > 0;
-        if (hasError) {
-          setErrors((prevErrors) => ({ ...prevErrors, ...err }));
-        } else {
-          setErrors((prevErrors) => {
-            const newErrors = { ...prevErrors };
-            delete newErrors.city;
-            delete newErrors.address;
-            return newErrors;
-          });
-        }
-        return hasError;
+      {
+        name: "Hobbies",
+        component: SecondTabComponent,
+        validation: () => {
+          const err: Record<string, string> = {};
+          if (userInfo.city.trim() === "") {
+            err.city = "City must not be empty";
+          }
+          if (userInfo.address.trim() === "") {
+            err.address = "Adress must not be empty";
+          }
+          const hasError = Object.keys(err).length > 0;
+          if (hasError) {
+            setErrors((prevErrors) => ({ ...prevErrors, ...err }));
+          } else {
+            setErrors((prevErrors) => {
+              const newErrors = { ...prevErrors };
+              delete newErrors.city;
+              delete newErrors.address;
+              return newErrors;
+            });
+          }
+          return hasError;
+        },
       },
-    },
-    {
-      name: "Settings",
-      component: ThirdTabComponent,
-      validation: () => {
-        return false;
+      {
+        name: "Settings",
+        component: ThirdTabComponent,
+        validation: () => {
+          return false;
+        },
       },
-    },
-  ],[userInfo]);
+    ],
+    [userInfo]
+  );
 
-  const onChange = (
-    e: InputChangeEvent
-  ) => {
+  const onChange = (e: InputChangeEvent) => {
     setUserInfo((prev) => {
       if (e.target.name === "interests") {
         if (
@@ -113,7 +114,10 @@ export default function TabForm() {
     });
   };
 
-  const { component: ActiveComponent } = useMemo(()=>config[activeTab],[activeTab]);
+  const { component: ActiveComponent } = useMemo(
+    () => config[activeTab],
+    [activeTab]
+  );
   return (
     <main>
       <div className="tabcontainer">
@@ -171,7 +175,9 @@ export default function TabForm() {
       </div>
       {activeTab === config.length - 1 && (
         <div className="centerdiv">
-          <button className="tabsubmitbtn" onClick={handleSubmit}>Submit</button>
+          <button className="tabsubmitbtn" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
       )}
     </main>

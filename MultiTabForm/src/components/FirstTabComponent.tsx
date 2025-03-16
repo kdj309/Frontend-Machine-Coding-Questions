@@ -3,11 +3,11 @@ import { info } from "../types";
 function FirstTabComponent({
   onChange,
   info,
-  errors
+  errors,
 }: {
   info: info;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  errors:Record<string,string>
+  errors: Record<string, string>;
 }) {
   return (
     <div className="tabbody-container">
@@ -21,7 +21,7 @@ function FirstTabComponent({
           value={info.name}
           onChange={onChange}
         ></input>
-        {errors['name']&&<span>{errors['name']}</span>}
+        {errors["name"] && <span>{errors["name"]}</span>}
       </div>
       <div className="tabinputcontainer">
         <label htmlFor="email">Email</label>
@@ -33,8 +33,7 @@ function FirstTabComponent({
           value={info.email}
           onChange={onChange}
         ></input>
-        {errors['email']&&<span>{errors['email']}</span>}
-
+        {errors["email"] && <span>{errors["email"]}</span>}
       </div>
       <div className="tabinputcontainer">
         <label htmlFor="number">Phone Number</label>
@@ -47,7 +46,7 @@ function FirstTabComponent({
           value={info.number}
           onChange={onChange}
         ></input>
-        {errors['number']&&<span>{errors['number']}</span>}
+        {errors["number"] && <span>{errors["number"]}</span>}
       </div>
     </div>
   );

@@ -44,7 +44,7 @@ async function addProductsToDom() {
     const { products, total: productstotal } = await getProducts(loadedproducts);
     isLoading = false;
     if (total === null) total = productstotal;
-    loadedproducts += products.length;
+    loadedproducts +=batchsize
     const fragment = document.createDocumentFragment();
     for (let index = 0; index < products.length; index++) {
         const product = products[index];

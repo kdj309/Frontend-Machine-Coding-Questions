@@ -38,16 +38,14 @@ const Products = () => {
       const { products, total: productstotal } = await getProducts(skip);
       setLoading(false);
       if (products.length) {
-      //@ts-ignore
-      setProducts((prev)=>[...prev,...products]);
+        //@ts-ignore
+        setProducts((prev) => [...prev, ...products]);
       }
       if (!total) {
-      setTotal(productstotal);
-        
+        setTotal(productstotal);
       }
     })();
   }, [skip]);
-
 
   return (
     <div className="products_container">
