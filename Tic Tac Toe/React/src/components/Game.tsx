@@ -1,15 +1,14 @@
 import { useCallback, useState } from "react";
 import Cell from "./Cell";
-const GRIDSIZE = 3;
 interface gameprogress {
   rows: Record<number, number>;
   cols: Record<number, number>;
   diag: number;
   antidiag: number;
 }
-export default function Game() {
+export default function Game({gridSize=3}:{gridSize:number}) {
   const [gameBoard, setGameBoard] = useState(
-    new Array(GRIDSIZE).fill(null).map(() => new Array(GRIDSIZE).fill(null))
+    new Array(gridSize).fill(null).map(() => new Array(gridSize).fill(null))
   );
   const [gameProgress, setGameProgress] = useState<gameprogress>({
     rows: {},
@@ -28,10 +27,12 @@ export default function Game() {
       curplayer: "X" | "O",
       currentProgress: gameprogress
     ) => {
-      const value = curplayer === "X" ? 1 : -1;
       const newboard = gameBoard.map((r) => [...r]);
       newboard[row][col] = curplayer;
       setGameBoard(newboard);
+
+      const value = curplayer === "X" ? 1 : -1;
+
       const prevref = {
         rows: {
           ...currentProgress.rows,
@@ -50,7 +51,7 @@ export default function Game() {
       setGameProgress(prevref);
       if (checkWinner(row, col, prevref)) {
         setWinner(curplayer);
-      } else if (moveCount === GRIDSIZE * GRIDSIZE - 1) {
+      } else if (moveCount === gridSize * gridSize - 1) {
         setWinner("DRAW");
       } else {
         setPlayer((curplayer) => (curplayer === "X" ? "O" : "X"));
@@ -84,7 +85,7 @@ export default function Game() {
     });
     setWinner(null);
     setGameBoard(
-      new Array(GRIDSIZE).fill(null).map(() => new Array(GRIDSIZE).fill(null))
+      new Array(gridSize).fill(null).map(() => new Array(gridSize).fill(null))
     );
     setMoveCount(0)
     setPlayer("X")
@@ -94,7 +95,7 @@ export default function Game() {
     <>
       <div className="gamecontainer">
         {gameBoard.map((row, idx) => (
-          <div className="gamecontainer_row" key={idx}>
+          <div className="gamecontainer_row" role="row" key={idx}>
             {row.map((col, colidx) => (
               <Cell
                 key={`${idx}${colidx}`}

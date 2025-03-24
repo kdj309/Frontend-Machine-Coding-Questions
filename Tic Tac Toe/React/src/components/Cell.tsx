@@ -8,7 +8,7 @@ export default function Cell({
   disabled: boolean;
 }) {
   return (
-    <div className={`cell ${disabled ? "disable" : ""}`} onClick={togglePlayer}>
+    <div role="col" className={`cell ${disabled ? "disable" : ""}`} onClick={togglePlayer}>
       {player}
     </div>
   );

@@ -67,10 +67,7 @@ async function loadImages() {
     }
     pagewisebtncontainer.appendChild(btnsfragment);
   }
-  if (gallery.children.length) {
-    gallery.replaceChildren();
-  }
-  gallery.appendChild(fragment);
+    gallery.replaceChildren(fragment);
 }
 prevbtn.addEventListener("click", async (e) => {
   if (currentPage > 1) {

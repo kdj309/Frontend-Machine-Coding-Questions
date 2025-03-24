@@ -26,9 +26,9 @@ function createGameBoard() {
                     movecount++;
                 }
                 swapPlayer();
-                e.target.classList.add("disableclick")
+                // e.target.classList.add("disableclick")
             }
-        })
+        },{once:true})
         for (let j = 0; j < noofbox; j++) {
             const colRef = document.createElement("div")
             colRef.className = "col cell";

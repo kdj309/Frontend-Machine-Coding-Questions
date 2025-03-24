@@ -4,7 +4,9 @@ import './App.css'
 import ProgressBar from './ProgressBar/ProgressBar'
 const totalms=10*1000;
 const interval=1*1000;
+//10
 const totalcycles=Math.floor(totalms/interval);
+//10
 const progressmade=(interval/totalms)*100;
 function App() {
   const [progreess, setProgreess] = useState<number>(0)

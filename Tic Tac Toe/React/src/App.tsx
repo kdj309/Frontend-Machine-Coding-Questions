@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <Game/>
+      <Game gridSize={3}/>
     </>
   )
 }
