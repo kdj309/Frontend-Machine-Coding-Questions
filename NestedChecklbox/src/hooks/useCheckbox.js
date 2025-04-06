@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
 import checkboxData from "../data";
+import {updateChildren,updateParent} from '../lib/helpers'
+
 export default function useCheckbox() {
   const [itemsChecked, setItemsChecked] = useState({
     checked: new Map(),
@@ -10,54 +12,10 @@ export default function useCheckbox() {
       const copychecked = new Map(old.checked);
       const copyindeterminate = new Map(old.indeterminate);
       copychecked.set(node.id, isChecked);
-      function updateChildrens(node) {
-        const children = node.children;
-        if (children.length) {
-          children.forEach((element) => {
-            copychecked.set(element.id, isChecked);
-            updateChildrens(element);
-          });
-        }
-      }
 
-      function areAllChildrenChecked(item) {
-        if (!item.children || item.children.length == 0) {
-          return copychecked.get(item.id) ?? false;
-        }
+      updateChildren(node,copychecked,isChecked);
 
-        return item.children.every((i) => {
-          return areAllChildrenChecked(i);
-        });
-      }
-
-      function someChildrensChecked(item) {
-        if (!item.children || item.children.length == 0) {
-          return copychecked.get(item.id) ?? false;
-        }
-
-        return item.children.some((i) => {
-          return someChildrensChecked(i);
-        });
-      }
-
-      function updateParent(parentNode = []) {
-        parentNode.forEach((item) => {
-          if (item.children.length) {
-            const allChildrenChecked = areAllChildrenChecked(item);
-            copychecked.set(item.id, allChildrenChecked);
-            if (!allChildrenChecked) {
-              const someChildrenChecked = someChildrensChecked(item);
-              copyindeterminate.set(item.id, someChildrenChecked);
-            } else {
-              copyindeterminate.set(item.id, false);
-            }
-            updateParent(item.children);
-          }
-        });
-      }
-      updateChildrens(node);
-
-      updateParent(checkboxData);
+      updateParent(checkboxData,copychecked,copyindeterminate);
       return { checked: copychecked, indeterminate: copyindeterminate };
     });
   }, []);

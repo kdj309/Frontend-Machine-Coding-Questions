@@ -6,14 +6,14 @@ export default function CheckBox({
   handleChange,
   indeterminateItems,
 }) {
-  const inputRef = useRef({});
+  const inputRef = useRef(new Map());
   useEffect(() => {
     const entries = indeterminateItems.entries();
     for (let index = 0; index < indeterminateItems.size; index++) {
       const [key, value] = entries.next().value;
-        if (inputRef.current[key]) {
-            inputRef.current[key].indeterminate = value;
-        }
+      if (inputRef.current.get(key)) {
+        inputRef.current.get(key).indeterminate = value;
+      }
     }
   }, [indeterminateItems]);
 
@@ -27,10 +27,12 @@ export default function CheckBox({
               onChange={(e) => {
                 handleChange(e.target.checked, item);
               }}
+              aria-label={item.label}
+              aria-checked={itemsChecked?.get(item.id) ?? false}
               type="checkbox"
               id={`${item.id}-checkbox`}
               ref={(input) => {
-                inputRef.current[item.id] = input;
+                inputRef.current.set(item.id, input);
               }}
             />
             <label htmlFor={`${item.id}-checkbox`}>{item.label}</label>

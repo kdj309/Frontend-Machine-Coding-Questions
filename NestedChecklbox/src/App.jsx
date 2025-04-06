@@ -4,7 +4,7 @@ import checkboxData from "./data";
 import useCheckbox from "./hooks/useCheckbox.js";
 
 function App() {
-  const {itemsChecked,handleChange} = useCheckbox();
+  const { itemsChecked, handleChange } = useCheckbox();
   return (
     <>
       <CheckBox
