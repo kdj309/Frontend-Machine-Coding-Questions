@@ -1,0 +1,6 @@
+.checkbox-container{
+  padding-left: 0.85rem;
+}
+.checkbox-container>label{
+  margin: 0.25em;
+}
